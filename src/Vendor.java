@@ -146,4 +146,18 @@ class Vending {
         }
         return 0;
     }
+    // marks an item as bestseller
+    void markBestseller(String name) {
+        if (Stock.containsKey(name)) {
+            Stock.get(name).bestseller = true;
+        }
+    }
+
+    // checks if an item is a bestseller
+    boolean isBestseller(String name) {
+        if (Stock.containsKey(name)) {
+            return Stock.get(name).bestseller;
+        }
+        return false;
+    }
 }

@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class VendorTest {
 
@@ -121,6 +121,16 @@ public class VendorTest {
         vendor.select("Candy");
 
         assertEquals(1.00, vendor.getBalance(), 0.001);
+    }
+
+    @Test
+    void testBestseller() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.markBestseller("Candy");
+
+        assertTrue(vendor.isBestseller("Candy"));
+        assertFalse(vendor.isBestseller("Gum"));
     }
 
 }
