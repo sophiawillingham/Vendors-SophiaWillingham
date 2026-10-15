@@ -107,7 +107,7 @@ class Vending {
         }
     }
 
-    // Returns the number of purchases for an item
+    // returns the number of purchases
     int getPurchaseCount(String name) {
         return purchaseCount.getOrDefault(name, 0);
     }
@@ -115,5 +115,19 @@ class Vending {
     // removes an item from the vendor's inventory
     void removeItem(String name) {
         Stock.remove(name);
+    }
+    // sets the description
+    void setItemDescription(String name, String description) {
+        if (Stock.containsKey(name)) {
+            Stock.get(name).description = description;
+        }
+    }
+
+    // returns description
+    String getItemDescription(String name) {
+        if (Stock.containsKey(name)) {
+            return Stock.get(name).description;
+        }
+        return "Item not found";
     }
 }

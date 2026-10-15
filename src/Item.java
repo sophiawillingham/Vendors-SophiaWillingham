@@ -1,6 +1,7 @@
 class Item {
     double price;
     int stock;
+    String description = "";
 
     Item(double price, int numPieces) {
         this.price = price;
