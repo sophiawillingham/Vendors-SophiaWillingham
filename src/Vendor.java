@@ -130,4 +130,20 @@ class Vending {
         }
         return "Item not found";
     }
+
+    // applies a discount
+    void applyDiscount(String name, double percent) {
+        if (Stock.containsKey(name) && percent >= 0 && percent <= 100) {
+            Item item = Stock.get(name);
+            item.price = item.price * (1 - percent / 100);
+        }
+    }
+
+    // returns current price
+    double getItemPrice(String name) {
+        if (Stock.containsKey(name)) {
+            return Stock.get(name).price;
+        }
+        return 0;
+    }
 }

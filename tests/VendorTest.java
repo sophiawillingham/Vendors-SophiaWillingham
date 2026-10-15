@@ -109,4 +109,18 @@ public class VendorTest {
                 vendor.getItemDescription("Chips"));
     }
 
+    @Test
+    void testApplyDiscount() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.applyDiscount("Candy", 20);
+
+        assertEquals(1.00, vendor.getItemPrice("Candy"), 0.001);
+
+        vendor.addMoney(2.00);
+        vendor.select("Candy");
+
+        assertEquals(1.00, vendor.getBalance(), 0.001);
+    }
+
 }
