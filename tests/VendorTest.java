@@ -74,4 +74,14 @@ public class VendorTest {
         assertEquals(5, vendors[4].getStock("Candy"));
     }
 
+    @Test
+    void testRemoveItem() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.removeItem("Candy");
+
+        assertEquals(0, vendor.getStock("Candy"));
+        assertEquals(5, vendor.getStock("Gum"));
+    }
+
 }

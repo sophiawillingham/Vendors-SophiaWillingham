@@ -104,4 +104,9 @@ class Vending {
             System.out.println(name + ": " + item.stock);
         }
     }
+
+    // removes an item from the vendor's inventory
+    void removeItem(String name) {
+        Stock.remove(name);
+    }
 }
