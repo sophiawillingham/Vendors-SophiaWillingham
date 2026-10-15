@@ -160,4 +160,25 @@ class Vending {
         }
         return false;
     }
+
+    // applies a discount to every item in a category
+    void applyCategoryDiscount(String category, double percent) {
+        if (percent < 0 || percent > 100) {
+            return;
+        }
+
+        for (String name : Stock.keySet()) {
+            Item item = Stock.get(name);
+
+            if (item.category.equals(category)) {
+                applyDiscount(name, percent);
+            }
+        }
+    }
+
+    void setItemCategory(String name, String category) {
+        if (Stock.containsKey(name)) {
+            Stock.get(name).category = category;
+        }
+    }
 }

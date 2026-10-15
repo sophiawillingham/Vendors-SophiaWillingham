@@ -133,4 +133,17 @@ public class VendorTest {
         assertFalse(vendor.isBestseller("Gum"));
     }
 
+    @Test
+    void testCategoryDiscount() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.setItemCategory("Candy", "Snacks");
+        vendor.setItemCategory("Gum", "Snacks");
+
+        vendor.applyCategoryDiscount("Snacks", 20);
+
+        assertEquals(1.00, vendor.getItemPrice("Candy"), 0.001);
+        assertEquals(0.40, vendor.getItemPrice("Gum"), 0.001);
+    }
+
 }
