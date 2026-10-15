@@ -73,10 +73,18 @@ class Vending {
         if (Stock.containsKey(name) && amount > 0) {
             Stock.get(name).restock(amount);
         }
-
     }
 
-    class Examples {
+    // restocks
+    void restockItem(String name, int amount, double price) {
+        if (amount <= 0 || price < 0) {
+            return;
+        }
+
+        if (Stock.containsKey(name)) {
+            Stock.get(name).restock(amount);
+        } else {
+            Stock.put(name, new Item(price, amount));
+        }
     }
 }
-
