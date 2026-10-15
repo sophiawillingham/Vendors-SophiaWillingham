@@ -96,4 +96,12 @@ class Vending {
             Stock.put(newName, item);
         }
     }
+
+    // prints items and their stock amounts
+    void printInventory() {
+        for (String name : Stock.keySet()) {
+            Item item = Stock.get(name);
+            System.out.println(name + ": " + item.stock);
+        }
+    }
 }

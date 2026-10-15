@@ -61,4 +61,17 @@ public class VendorTest {
         assertEquals(0, vendor.getStock("Candy"));
     }
 
+    @Test
+    void testMultipleVendors() {
+        Vending[] vendors = new Vending[5];
+
+        for (int i = 0; i < 5; i++) {
+            vendors[i] = new Vending(i + 1, i + 2);
+        }
+
+        assertEquals(5, vendors.length);
+        assertEquals(1, vendors[0].getStock("Candy"));
+        assertEquals(5, vendors[4].getStock("Candy"));
+    }
+
 }
