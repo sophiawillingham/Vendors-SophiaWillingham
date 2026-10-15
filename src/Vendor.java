@@ -56,7 +56,7 @@ class Vending {
         } else System.out.println("Sorry, don't know that item");
     }
 
-    void emptyInventory() { // empties the vendor's inventory
+    void emptyInventory() { // empties the vendors inventory
         for (Item item : Stock.values()) {
             item.stock = 0;
         }
@@ -85,6 +85,15 @@ class Vending {
             Stock.get(name).restock(amount);
         } else {
             Stock.put(name, new Item(price, amount));
+        }
+    }
+
+    // changes an items name
+    void renameItem(String oldName, String newName) {
+        if (Stock.containsKey(oldName) && !Stock.containsKey(newName)
+                && newName != null && !newName.isEmpty()) {
+            Item item = Stock.remove(oldName);
+            Stock.put(newName, item);
         }
     }
 }
