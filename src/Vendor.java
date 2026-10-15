@@ -15,39 +15,45 @@ class Vending {
         this.balance = 0;
     }
 
-    /** resets the Balance to 0 */
-    void resetBalance () {
+    /**
+     * resets the Balance to 0
+     */
+    void resetBalance() {
         this.balance = 0;
     }
 
-    /** returns the current balance */
-    double getBalance () {
+    /**
+     * returns the current balance
+     */
+    double getBalance() {
         return this.balance;
     }
 
-    /** adds money to the machine's balance
+    /**
+     * adds money to the machine's balance
+     *
      * @param amt how much money to add
-     * */
-    void addMoney (double amt) {
+     *
+     */
+    void addMoney(double amt) {
         this.balance = this.balance + amt;
     }
 
-    /** attempt to purchase named item.  Message returned if
+    /**
+     * attempt to purchase named item.  Message returned if
      * the balance isn't sufficient to cover the item cost.
      *
      * @param name The name of the item to purchase ("Candy" or "Gum")
      */
-    void select (String name) {
+    void select(String name) {
         if (Stock.containsKey(name)) {
             Item item = Stock.get(name);
             if (balance >= item.price) {
                 item.purchase(1);
                 this.balance = this.balance - item.price;
-            }
-            else
+            } else
                 System.out.println("Gimme more money");
-        }
-        else System.out.println("Sorry, don't know that item");
+        } else System.out.println("Sorry, don't know that item");
     }
 
     void emptyInventory() { // empties the vendor's inventory
@@ -63,8 +69,14 @@ class Vending {
         return 0;
     }
 
-}
+    void restockItem(String name, int amount) { // adds more stock to an existing item
+        if (Stock.containsKey(name) && amount > 0) {
+            Stock.get(name).restock(amount);
+        }
 
-class Examples {
+    }
+
+    class Examples {
+    }
 }
 
