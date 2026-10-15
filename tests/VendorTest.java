@@ -146,4 +146,40 @@ public class VendorTest {
         assertEquals(0.40, vendor.getItemPrice("Gum"), 0.001);
     }
 
+    @Test
+    void testInsufficientMoney() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.addMoney(0.50);
+        vendor.select("Candy");
+
+        assertEquals(5, vendor.getStock("Candy"));
+        assertEquals(0.50, vendor.getBalance(), 0.001);
+    }
+
+    @Test
+    void testOutOfStock() {
+        Vending vendor = new Vending(0, 5);
+
+        vendor.addMoney(10.00);
+        vendor.select("Candy");
+
+        assertEquals(0, vendor.getStock("Candy"));
+        assertEquals(10.00, vendor.getBalance(), 0.001);
+        assertEquals(0, vendor.getPurchaseCount("Candy"));
+    }
+
+    @Test
+    void testPurchaseUpdatesInventory() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.addMoney(5.00);
+        vendor.select("Candy");
+
+        // Checks inventory and balance after a purchase
+        assertEquals(4, vendor.getStock("Candy"));
+        assertEquals(3.75, vendor.getBalance(), 0.001);
+        assertEquals(1, vendor.getPurchaseCount("Candy"));
+    }
+
 }

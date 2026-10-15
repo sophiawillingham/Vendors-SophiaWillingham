@@ -49,7 +49,7 @@ class Vending {
     void select(String name) {
         if (Stock.containsKey(name)) {
             Item item = Stock.get(name);
-            if (balance >= item.price) {
+            if (item.stock > 0 && balance >= item.price) {
                 item.purchase(1);
                 purchaseCount.put(name, purchaseCount.getOrDefault(name, 0) + 1);
                 this.balance = this.balance - item.price;
