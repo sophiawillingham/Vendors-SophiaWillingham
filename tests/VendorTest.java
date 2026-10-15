@@ -84,4 +84,17 @@ public class VendorTest {
         assertEquals(5, vendor.getStock("Gum"));
     }
 
+    @Test
+    void testPurchaseTracking() {
+        Vending vendor = new Vending(5, 5);
+
+        vendor.addMoney(10.00);
+        vendor.select("Candy");
+        vendor.select("Candy");
+        vendor.select("Gum");
+
+        assertEquals(2, vendor.getPurchaseCount("Candy"));
+        assertEquals(1, vendor.getPurchaseCount("Gum"));
+    }
+
 }

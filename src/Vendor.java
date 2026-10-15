@@ -8,6 +8,7 @@ import java.util.HashMap;
 class Vending {
     private HashMap<String, Item> Stock = new HashMap<String, Item>();
     private double balance;
+    private HashMap<String, Integer> purchaseCount = new HashMap<>();
 
     Vending(int numCandy, int numGum) {
         Stock.put("Candy", new Item(1.25, numCandy));
@@ -50,6 +51,7 @@ class Vending {
             Item item = Stock.get(name);
             if (balance >= item.price) {
                 item.purchase(1);
+                purchaseCount.put(name, purchaseCount.getOrDefault(name, 0) + 1);
                 this.balance = this.balance - item.price;
             } else
                 System.out.println("Gimme more money");
@@ -103,6 +105,11 @@ class Vending {
             Item item = Stock.get(name);
             System.out.println(name + ": " + item.stock);
         }
+    }
+
+    // Returns the number of purchases for an item
+    int getPurchaseCount(String name) {
+        return purchaseCount.getOrDefault(name, 0);
     }
 
     // removes an item from the vendor's inventory
